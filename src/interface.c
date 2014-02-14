@@ -41,8 +41,19 @@ static bool split_range(const char* r, char** ip_from, char** ip_to) {
     return status;
 }
 
+static bool validate_addr(const char* addr) {
+    regex_t myregex;
+    bool valid = false;
+    regcomp( &myregex,"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", REG_EXTENDED | REG_NOSUB );
+    if (!regexec(&myregex, addr, (size_t)0 , NULL , 0 ) ) {
+        valid = true;
+    }
+    regfree(&myregex);
+    return valid;
+}
+
 static uint32_t addr_to_bin(const char* addr) {
-    uint32_t from;
+    uint32_t from = 0;
     /**
      * strtok() changes the first parameter we don't want that side effect
      * with our addr parameter
@@ -73,9 +84,11 @@ bool parse_range(const char* range, uint32_t *ip1, uint32_t *ip2) {
         char *a = malloc((strlen(range) + 1) * sizeof(char));
         char *b = malloc((strlen(range) + 1) * sizeof(char));
         split_range(range, &a, &b);
-        *ip1 = addr_to_bin(a);
-        *ip2 = addr_to_bin(b);
-        status = true;
+        if(validate_addr(a) && validate_addr(b)) {
+            *ip1 = addr_to_bin(a);
+            *ip2 = addr_to_bin(b);
+            status = true;
+        }
         free(a);
         free(b);
     } else {
