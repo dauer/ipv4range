@@ -30,8 +30,8 @@ Getting help:
 
 Calculate CIDR for an IP range:
 
-   $./ipv4range -n 69.208.0.0-69.208.0.255
-   CIDR:    69.208.0.0/24
+    $ ./ipv4range -n 69.208.0.0-69.208.0.255
+    CIDR:    69.208.0.0/24
 
 Listing all IPs in a range:
 
