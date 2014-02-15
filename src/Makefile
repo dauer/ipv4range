@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-std=gnu99 -g -Wextra -Wall -pedantic -I.
 DEPS=iprange.h interface.h
-OBJ=main.o interface.c iprange.o 
+OBJ=main.o interface.o iprange.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
