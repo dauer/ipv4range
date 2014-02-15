@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
-#include <unistd.h>
+#include <getopt.h>
 
 #include "interface.h"
 #include "iprange.h"
