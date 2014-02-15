@@ -54,14 +54,15 @@ static bool validate_addr(const char* addr) {
 
 static uint32_t addr_to_bin(const char* addr) {
     uint32_t from = 0;
+    char* buffer = malloc((strlen(addr) + 1) * sizeof(char));
+    char *tmp = NULL;
+    unsigned char t = 0;
+    strcpy(buffer, addr);
     /**
-     * strtok() changes the first parameter we don't want that side effect
+     * strtok() changes the first parameter, we don't want that side effect
      * with our addr parameter
      */
-    char* buffer = malloc((strlen(addr) + 1) * sizeof(char));
-    strcpy(buffer, addr);
-    char *tmp = buffer;
-    unsigned char t = 0;
+    tmp = buffer;
     tmp = strtok(tmp, ".");
     while(tmp != NULL) {
         t = atoi(tmp);

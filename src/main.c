@@ -23,16 +23,16 @@ int main(int argc, char* argv[]) {
     } else {
         while((opt = getopt(argc, argv, "hcna")) != -1) {
             switch(opt) {
-                case 'n': // NETMASK
+                case 'n': /* NETMASK */
                     args |= OPTION_CIDR;
                 break;
-                case 'c': // CLASS
+                case 'c': /* CLASS */
                     args |= OPTION_CLASS;
                 break;
-                case 'h': // HELP
+                case 'h': /* HELP */
                     args |= OPTION_HELP;
                 break;
-                case 'a': // ALL
+                case 'a': /* ALL */
                     args |= OPTION_ALL;
                 break;
                 case '?':
@@ -48,8 +48,10 @@ int main(int argc, char* argv[]) {
             range = argv[optind];
             if(parse_range(range, &ip_from, &ip_to)) {
                 if(ip_from > ip_to) {
-                    // Swap numbers if 'to' is smaller than 'from',
-                    // we want them in increasing order...
+                    /**
+                     * Swap numbers if 'to' is smaller than 'from',
+                     * we want them in increasing order...
+                     */
                     ip_from = ip_from ^ ip_to;
                     ip_to   = ip_from ^ ip_to;
                     ip_from = ip_from ^ ip_to;
@@ -62,7 +64,7 @@ int main(int argc, char* argv[]) {
         }
 
         if(args & OPTION_HELP) {
-            // If help flag is set only show help message
+            /* If help flag is set only show help message */
             help();
         } else {
             if(args & OPTION_CIDR) {

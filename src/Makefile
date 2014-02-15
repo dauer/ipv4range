@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c99 -g -Wextra -Wall -pedantic -I.
+CFLAGS=-std=c99 -ansi -g -Wextra -Wall -pedantic -I.
 DEPS=iprange.h interface.h
 OBJ=main.o interface.o iprange.o
 
