@@ -9,7 +9,7 @@ This project is very early in development, expect errors etc.
 Run the Makefile in the src folder to build the binary.
 
     git clone git@github.com:dauer/ipv4range.git
-    cd ipv4range/
+    cd ipv4range/src/
     make
     ./ipv4range -h
 
