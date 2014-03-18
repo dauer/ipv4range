@@ -1,5 +1,11 @@
 CC=gcc
-CFLAGS=-std=c99 -ansi -g -Wextra -Wall -pedantic -I.
+
+ifeq ($(mode), release)
+	CFLAGS=-std=c99 -O2 -ansi -Wextra -Wall -pedantic -I.
+else
+	CFLAGS=-std=c99 -O2 -ansi -g -Wextra -Wall -pedantic -I.
+endif
+
 DEPS=iprange.h interface.h
 OBJ=main.o interface.o iprange.o
 
