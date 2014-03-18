@@ -3,7 +3,7 @@ CC=gcc
 ifeq ($(mode), release)
 	CFLAGS=-std=c99 -O2 -ansi -Wextra -Wall -pedantic -Wconversion -I.
 else
-	CFLAGS=-std=c99 -O2 -ansi -g -Wextra -Wall -pedantic -Wconversion -I.
+	CFLAGS=-std=c99 -O0 -ansi -g -Wextra -Wall -pedantic -Wconversion -I.
 endif
 
 DEPS=iprange.h interface.h
