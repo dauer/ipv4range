@@ -56,7 +56,7 @@ static uint32_t addr_to_bin(const char* addr) {
     uint32_t from = 0;
     char* buffer = malloc((strlen(addr) + 1) * sizeof(char));
     char *tmp = NULL;
-    unsigned char t = 0;
+    uint32_t t = 0;
     strcpy(buffer, addr);
     /**
      * strtok() changes the first parameter, we don't want that side effect
@@ -65,7 +65,7 @@ static uint32_t addr_to_bin(const char* addr) {
     tmp = buffer;
     tmp = strtok(tmp, ".");
     while(tmp != NULL) {
-        t = atoi(tmp);
+        t = (uint32_t)atoi(tmp);
         from <<= 8;
         from |= t;
         tmp = strtok(NULL, ".");

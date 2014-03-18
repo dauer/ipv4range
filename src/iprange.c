@@ -12,7 +12,7 @@ int cidr(uint32_t from, uint32_t to) {
     int j = 0;
     for(i = 31; i>= 0; i--) {
         /* Get i-th bit of from and to and compare them */
-        if( ((from & ( 1 << i )) >> i) != ((to & ( 1 << i )) >> i) ) {
+        if( ((from & (uint32_t)( 1 << i )) >> i) != ((to & (uint32_t)( 1 << i )) >> i) ) {
             return j;
         }
         j++;
@@ -21,7 +21,7 @@ int cidr(uint32_t from, uint32_t to) {
 }
 
 static bool is_bit_set(uint32_t ch, int i ) {
-    return (1 << i) & ch;
+    return (uint32_t)(1 << i) & ch;
 }
 
 char class(uint32_t ip) {
