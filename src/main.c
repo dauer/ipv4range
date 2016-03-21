@@ -11,9 +11,9 @@
 #define OPTION_CLASS 0x04
 #define OPTION_ALL   0x08
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     int opt;
-    char* range         = NULL;
+    char *range         = NULL;
     uint32_t ip_from    = 0;
     uint32_t ip_to      = 0;
     unsigned char args  = 0;

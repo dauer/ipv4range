@@ -23,9 +23,9 @@ void help() {
     printf("  -n\tprint IP range in CIDR format\n");
 }
 
-static bool split_range(const char* r, char** ip_from, char** ip_to) {
-    char* range = malloc((strlen(r) + 1) * sizeof(char));
-    char* r_ptr = range;
+static bool split_range(const char *r, char **ip_from, char **ip_to) {
+    char *range = malloc((strlen(r) + 1) * sizeof(char));
+    char *r_ptr = range;
     bool status = false;
     strcpy(r_ptr, r);
     r_ptr = strtok(range, "-");
@@ -41,7 +41,7 @@ static bool split_range(const char* r, char** ip_from, char** ip_to) {
     return status;
 }
 
-static bool validate_addr(const char* addr) {
+static bool validate_addr(const char *addr) {
     regex_t myregex;
     bool valid = false;
     regcomp( &myregex,"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", REG_EXTENDED | REG_NOSUB );
@@ -52,9 +52,9 @@ static bool validate_addr(const char* addr) {
     return valid;
 }
 
-static uint32_t addr_to_bin(const char* addr) {
+static uint32_t addr_to_bin(const char *addr) {
     uint32_t from = 0;
-    char* buffer = malloc((strlen(addr) + 1) * sizeof(char));
+    char *buffer = malloc((strlen(addr) + 1) * sizeof(char));
     char *tmp = NULL;
     uint32_t t = 0;
     strcpy(buffer, addr);
@@ -77,7 +77,7 @@ static uint32_t addr_to_bin(const char* addr) {
 /**
  * parses a string IP range to two int IP adresses
  */
-bool parse_range(const char* range, uint32_t *ip1, uint32_t *ip2) {
+bool parse_range(const char *range, uint32_t *ip1, uint32_t *ip2) {
     regex_t myregex;
     bool status = false;
     regcomp(&myregex, "^([0-9\\.]){7,15}-([0-9\\.]){7,15}$", REG_EXTENDED | REG_NOSUB);
@@ -100,7 +100,7 @@ bool parse_range(const char* range, uint32_t *ip1, uint32_t *ip2) {
     return status;
 }
 
-void format_ip(uint32_t ip, char* str) {
+void format_ip(uint32_t ip, char *str) {
     ip_addr addr;
     addr = to_ip_addr(ip);
     sprintf(str, "%d.%d.%d.%d", addr.a, addr.b, addr.c, addr.d);
