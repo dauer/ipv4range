@@ -82,8 +82,9 @@ bool parse_range(const char *range, uint32_t *ip1, uint32_t *ip2) {
     bool status = false;
     regcomp(&myregex, "^([0-9\\.]){7,15}-([0-9\\.]){7,15}$", REG_EXTENDED | REG_NOSUB);
     if (!regexec(&myregex, range, (size_t)0 , NULL , 0 ) ) {
-        char *a = malloc((strlen(range) + 1) * sizeof(char));
-        char *b = malloc((strlen(range) + 1) * sizeof(char));
+        const size_t size = (strlen(range) + 1) * sizeof(char);
+        char *a = malloc(size);
+        char *b = malloc(size);
         split_range(range, &a, &b);
         if(validate_addr(a) && validate_addr(b)) {
             *ip1 = addr_to_bin(a);
